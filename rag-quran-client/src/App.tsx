@@ -70,10 +70,10 @@ function App() {
     <>
       <div className="bg-neutral-800 w-screen h-screen flex flex-col items-center justify-top text-neutral-50 text-base/7">
         <ScrollArea className={clsx("w-full flex justify-center custom-scrollbar overflow-auto", history.length !== 0 ? "h-[90vh]" : "h-[30vh]")}>
-          <div className="w-3xl flex flex-col gap-4 my-8">
+          <div className="max-w-3xl w-[90%] flex flex-col gap-4 my-8">
             {history.map((item, index) => (
               <div className={clsx(item.messager == "USER" && "flex justify-end")} key={index}>
-                <div className={clsx("w-xl prose prose-sm", item.messager == "USER" && "bg-neutral-700 p-2 rounded-xl")}>
+                <div className={clsx("max-w-xl w-[90%] prose prose-sm", item.messager == "USER" && "bg-neutral-700 p-2 rounded-xl")}>
                   <Markdown remarkPlugins={[remarkGfm]}>
                     {item.message}
                   </Markdown>
@@ -98,15 +98,15 @@ function App() {
           </div>
           <ScrollBar orientation="vertical" />
         </ScrollArea>
-        <div>
+        <div className="flex flex-col items-center w-full">
           {
             history.length === 0 &&
             <div className="text-center flex flex-col items-center gap-2 mb-4">
               <BookOpenText size={64} color="currentColor" />
-              <div className="text-2xl font-medium">What do you want to know from the Quran?</div>
+              <div className="md:text-2xl text-xl font-medium">What do you want to know from the Quran?</div>
             </div>
           }
-          <div className="flex items-end bg-neutral-700 rounded-3xl shadow-sm p-2 w-3xl mb-4">
+          <div className="flex items-end bg-neutral-700 rounded-3xl shadow-sm p-2 max-w-3xl w-[90%] mb-4">
             <Textarea
               ref={textareaRef}
               value={message}
